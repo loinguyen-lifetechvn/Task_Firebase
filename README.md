@@ -7,6 +7,7 @@
     - [x] Authenication (Facebook)
     - [x] Authenication (Google)
     - [x] CRUD (firestorage)
+    - [x] Notification 
 
 ## Build
 1. How to setup firebase [link](https://github.com/loinguyen-lifetechvn/Task_Firebase/issues/1)
