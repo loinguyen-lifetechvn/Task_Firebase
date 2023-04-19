@@ -1,11 +1,12 @@
 # task_firebase
-- You can read demo: [demo](https://firestore-root.firebaseapp.com/)
-[ ] Realtime database
-[.] Hosting firebase
-[.] Authenication (Email, password)
-[.] Authenication (Facebook)
-[.] Authenication (Google)
-[.] CRUD (firestorage)
+- You can read demo: [demo](https://firestore-root.web.app/#/)
+- Status complete:
+    - [ ] Realtime database
+    - [.] Hosting firebase
+    - [.] Authenication (Email, password)
+    - [.] Authenication (Facebook)
+    - [.] Authenication (Google)
+    - [.] CRUD (firestorage)
 
 ## Build
 1. How to setup firebase [link](https://github.com/loinguyen-lifetechvn/Task_Firebase/issues/1)
