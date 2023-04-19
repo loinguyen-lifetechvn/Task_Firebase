@@ -2,12 +2,13 @@
 - You can read demo: [demo](https://firestore-root.web.app/#/)
 - Status complete:
     - [ ] Realtime database
+    - [x] Notification 
     - [x] Hosting firebase
     - [x] Authenication (Email, password)
     - [x] Authenication (Facebook)
     - [x] Authenication (Google)
     - [x] CRUD (firestorage)
-    - [x] Notification 
+    
 
 ## Build
 1. How to setup firebase [link](https://github.com/loinguyen-lifetechvn/Task_Firebase/issues/1)
