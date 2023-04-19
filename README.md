@@ -2,7 +2,7 @@
 - You can read demo: [demo](https://firestore-root.web.app/#/)
 - Status complete:
     - [ ] Realtime database
-    - [x] Notification 
+    - [ ] Notification 
     - [x] Hosting firebase
     - [x] Authenication (Email, password)
     - [x] Authenication (Facebook)
