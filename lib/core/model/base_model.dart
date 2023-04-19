@@ -7,10 +7,10 @@ class BaseModel {
   String get id => Methods.getString(data, 'id');
   String get createdAt =>
       Methods.convertTime(Methods.getDateTime(data, FieldName.createdAt),
-          defaultFormat: 'dd/MM/yyyy');
+          defaultFormat: 'hh:mm a dd/MM/yyyy');
   String get updatedAt =>
       Methods.convertTime(Methods.getDateTime(data, FieldName.updatedAt),
-          defaultFormat: 'dd/MM/yyyy');
+          defaultFormat: 'hh:mm a dd/MM/yyyy');
 
   String get img => Methods.getString(data, FieldName.img);
 }

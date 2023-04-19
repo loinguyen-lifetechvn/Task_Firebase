@@ -5,6 +5,7 @@ import 'package:task_firebase/ui/resources/styles_manager.dart';
 class LFAppBar extends AppBar {
   LFAppBar({
     super.key,
+    super.bottom,
     required String title,
     Widget? suffix,
   }) : super(

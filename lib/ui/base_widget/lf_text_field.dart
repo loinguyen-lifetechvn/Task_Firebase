@@ -5,6 +5,7 @@ class LFTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String label;
   final bool obscureText;
+   final bool disable;
   final TextInputType? keyboardType;
   final String? initValue;
   final int? maxLines;
@@ -19,6 +20,7 @@ class LFTextFormField extends StatelessWidget {
       this.keyboardType,
       this.maxLines = 1,
       this.onChanged,
+      this.disable=false,
       this.initValue,
       this.obscureText = false,
       this.hintText = '',
@@ -30,6 +32,7 @@ class LFTextFormField extends StatelessWidget {
         onSaved: onSaved,
         keyboardType: keyboardType,
         maxLines: maxLines,
+        readOnly: disable,
         onChanged: onChanged,
         initialValue: initValue,
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -37,6 +40,7 @@ class LFTextFormField extends StatelessWidget {
             validator ?? (v) => v!.isEmpty ? 'Không được để trống' : null,
         decoration: InputDecoration(
           hintText: hintText,
+          
           filled: true,
           labelText: label,
           border: OutlineInputBorder(

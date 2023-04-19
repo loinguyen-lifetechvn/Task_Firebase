@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:task_firebase/ui/base_widget/form_data.dart';
@@ -10,16 +9,27 @@ abstract class BaseMainView extends StatelessWidget {
   }) : super(key: key);
   String get titleAppbar;
   void onSubmitForm();
+  Widget infoWidget() => const SizedBox.shrink();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: LFAppBar(title: titleAppbar),
-      body: FormData(
-        onSubmit: onSubmitForm,
-        list: listTextField,
-        isFullScreen: true,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          infoWidget(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: FormData(
+                onSubmit: onSubmitForm,
+                list: listTextField,
+                isFullScreen: true,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -103,6 +103,17 @@ class Api {
     }
   }
 
+  Future<bool> checkDocumentExists(String documentId) async {
+    bool exists = false;
+    try {
+      var documentSnapshot = await ref.doc(documentId).get();
+      exists = documentSnapshot.exists;
+    } catch (e) {
+      logError('Error: ${e.toString()}');
+    }
+    return exists;
+  }
+
   Future<String> _uploadFile(File file, {required String pathFile}) async {
     UploadTask uploadTask = storage.ref(pathFile).putFile(file);
     String url = await (await uploadTask).ref.getDownloadURL();
@@ -143,7 +154,8 @@ class Api {
       //Read data by id and get Collection
       var childCollection = ref.doc(parentID).collection(childTable);
       await childCollection.doc(childID).update(Map.from(newData));
-      logSuccess('Cập nhật data thành công vào bảng $pathCollection > $childTable');
+      logSuccess(
+          'Cập nhật data thành công vào bảng $pathCollection > $childTable');
       return null;
     } catch (e) {
       logError('Cập nhật data thất bại: $e');

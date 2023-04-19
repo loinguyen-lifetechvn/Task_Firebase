@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/core/service/auth_service.dart';
+import 'package:task_firebase/core/service/singleton.dart';
+import 'package:task_firebase/locator.dart';
 import 'package:task_firebase/ui/base_widget/lf_dialog.dart';
 import 'package:task_firebase/ui/resources/routes_manager.dart';
 
@@ -15,9 +18,11 @@ class GetNavigation {
         ?.pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  Future<dynamic> toAndRemoveUntil(String routeName, {Object? arguments}) async {
-   return navigatorKey.currentState
-        ?.pushNamedAndRemoveUntil(routeName, (router) => false, arguments: arguments);
+  Future<dynamic> toAndRemoveUntil(String routeName,
+      {Object? arguments}) async {
+    return navigatorKey.currentState?.pushNamedAndRemoveUntil(
+        routeName, (router) => false,
+        arguments: arguments);
   }
 
   Future<dynamic> back() async {
@@ -26,7 +31,10 @@ class GetNavigation {
 
   Future<dynamic> toLogout() async {
     AuthenticationService service = AuthenticationService();
-    await service.signOut();
+    locator<Singleton>().userModel.data.clear();
+    await service.signOut().whenComplete(() {
+      logSuccess('Logout success');
+    });
     return navigatorKey.currentState
         ?.pushNamedAndRemoveUntil(RouterPath.login, (router) => false);
   }

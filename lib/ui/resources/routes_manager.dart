@@ -29,14 +29,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case RouterPath.user:
         return MaterialPageRoute(builder: (_) => const UserView());
-         case RouterPath.userDetail:
-        return MaterialPageRoute(builder: (_) =>  UserDetailView());
+      case RouterPath.userDetail:
+        return MaterialPageRoute(builder: (_) => UserDetailView());
 
       //Quizz
       case RouterPath.mainAdd:
         return MaterialPageRoute(builder: (_) => MainAddView());
       case RouterPath.mainManager:
-        return MaterialPageRoute(builder: (_) => MainMangerView());
+        return MaterialPageRoute(builder: (_) => const MainManagerView());
       case RouterPath.mainDetail:
         PostModel post = routeSettings.arguments as PostModel;
         return MaterialPageRoute(

@@ -9,4 +9,5 @@ class FieldName {
   static const String createdAt = 'createdAt';
   static const String updatedAt = 'updatedAt';
   static const String email = 'email';
+  static const String refID = 'refID';
 }

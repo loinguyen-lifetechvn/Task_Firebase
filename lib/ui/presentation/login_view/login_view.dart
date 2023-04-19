@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:task_firebase/core/service/auth_service.dart';
 import 'package:task_firebase/core/service/get_navigation.dart';
 import 'package:task_firebase/core/service/singleton.dart';
@@ -27,10 +26,8 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     if (AuthenticationService().getCurrentUser() != null) {
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        locator<Singleton>().reloadGlobalUser().whenComplete(() {
-          locator<GetNavigation>().toAndRemoveUntil(RouterPath.mainManager);
-        });
+      locator<Singleton>().reloadGlobalUser().whenComplete(() {
+        locator<GetNavigation>().toAndRemoveUntil(RouterPath.mainManager);
       });
     }
     super.initState();

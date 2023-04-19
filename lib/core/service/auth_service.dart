@@ -37,8 +37,6 @@ abstract class BaseAuth {
 class AuthenticationService implements BaseAuth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-
   @override
   Future<String?> signIn(String email, String password) async {
     try {
@@ -54,19 +52,19 @@ class AuthenticationService implements BaseAuth {
   @override
   Future<String?> googleSignIn() async {
     try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount!.authentication;
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
       );
-
       await _firebaseAuth.signInWithCredential(credential);
-      await locator<Singleton>().reloadGlobalUser();
-
+      await _handleDatabaseSocialMedia();
       return null;
     } catch (ex) {
       logError(ex.toString());
@@ -82,12 +80,12 @@ class AuthenticationService implements BaseAuth {
       // Check if the user has successfully logged in.
       if (result.status == LoginStatus.success) {
         // Create a new credential.
-        final AuthCredential credential =
+        final OAuthCredential facebookAuthCredential =
             FacebookAuthProvider.credential(result.accessToken!.token);
 
         // Once signed in, return the UserCredential.
-        await _firebaseAuth.signInWithCredential(credential);
-        await locator<Singleton>().reloadGlobalUser();
+        await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+        await _handleDatabaseSocialMedia();
         return null;
       } else {
         logError(result.message.toString());
@@ -99,7 +97,7 @@ class AuthenticationService implements BaseAuth {
     }
   }
 
-  Future<void> _addUserToDatabase(
+  Future<void> _addUserToDatabaseBySignIn(
       {required String name,
       required String uid,
       required String email,
@@ -114,6 +112,25 @@ class AuthenticationService implements BaseAuth {
     });
   }
 
+  //Apply for social media: facebook, google
+  Future<void> _handleDatabaseSocialMedia() async {
+    Api api = Api(BaseTable.users);
+    User? user = AuthenticationService().getCurrentUser();
+
+    bool exists = await api.checkDocumentExists(user!.uid);
+    if (exists) {
+      return locator<Singleton>().reloadGlobalUser();
+    } else {
+      logSuccess('Đã lưu data trên firebase trên social media');
+      await _addUserToDatabaseBySignIn(
+          name: user.displayName ?? 'NoName',
+          uid: user.uid,
+          email: user.email ?? '',
+          dbo: '');
+      return locator<Singleton>().reloadGlobalUser();
+    }
+  }
+
   @override
   Future<String?> signUp(
       {required String email,
@@ -124,7 +141,7 @@ class AuthenticationService implements BaseAuth {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       logSuccess('Thêm vào authenication thành công');
-      await _addUserToDatabase(
+      await _addUserToDatabaseBySignIn(
           uid: AuthenticationService().getCurrentUser()!.uid,
           name: name,
           email: email,

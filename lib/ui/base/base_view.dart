@@ -5,22 +5,26 @@ import 'package:task_firebase/core/extension/log.dart';
 import 'package:task_firebase/ui/base/base_controller.dart';
 
 abstract class BaseView<T extends BaseController> extends StatelessWidget {
-  const BaseView(T baseController, {super.key})
+  const BaseView(T baseController, {super.key, this.isScreen = true})
       : _baseController = baseController;
 
   final T _baseController;
+
+  final bool isScreen;
 
   T get controller => _baseController;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(context),
-      body: _getWidget(),
-      bottomSheet: bottomSheet(context),
-      floatingActionButton: floatingActionButton(context),
-      drawer: drawer,
-    );
+    return isScreen
+        ? Scaffold(
+            appBar: appBar(context),
+            body: _getWidget(),
+            bottomSheet: bottomSheet(context),
+            floatingActionButton: floatingActionButton(context),
+            drawer: drawer,
+          )
+        : _getWidget();
   }
 
   Widget? get drawer => null;

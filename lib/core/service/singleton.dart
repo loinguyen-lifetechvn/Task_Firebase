@@ -19,4 +19,6 @@ class Singleton {
     _userModel = UserModel(data.toMap());
     logSuccess('Reload lại data global user thành công');
   }
+
+  
 }

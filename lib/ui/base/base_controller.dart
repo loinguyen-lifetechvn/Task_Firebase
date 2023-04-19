@@ -13,9 +13,9 @@ abstract class BaseController extends ChangeNotifier {
 
   void setData(QuerySnapshot<Object?>? value) {
     _data.clear();
-
     _data.addAll(value.toListMap());
   }
+
 
 
   void reload() {
