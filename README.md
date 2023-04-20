@@ -30,8 +30,9 @@
     - [x] Authenication (Github)
     - [x] CRUD (firestorage)
 - You can read here
-    - |                             | Web  | Android | IOS  |
-| --------------------------- | :--: | :-----: | :--: |
+
+|                          | Web  | Android | IOS  |
+| --- | :--: | :--: | :--: |
 | .env                        |  ✅   |    👌    |  👌   |
 | Upload file (image, pdf,..) |  ❌   |    ✅    |  🤣   |
 | Authenication facebook      |  ❌   |    ✅    |  👌   |
@@ -44,8 +45,6 @@
 - ❌ Uncompleted and need have many time (Can fix)
 - 👌Can fix EZ if required
 - 🤣Completed but not checked yet
-
-
 
 
 
