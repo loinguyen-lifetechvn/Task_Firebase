@@ -15,5 +15,6 @@
 2. SignIn
     - [Google](https://github.com/loinguyen-lifetechvn/Task_Firebase/issues/2)
     - [Facebook](https://github.com/loinguyen-lifetechvn/Task_Firebase/issues/3)
+    - [Github](https://github.com/loinguyen-lifetechvn/Task_Firebase/issues/4)
 3. Hosting:[Medium](https://levelup.gitconnected.com/how-to-host-your-flutter-web-app-with-firebase-hosting-67d3e4657002) 
 
