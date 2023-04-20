@@ -29,7 +29,23 @@
     - [x] Authenication (Google)
     - [x] Authenication (Github)
     - [x] CRUD (firestorage)
-    
+- You can read here
+|                             | Web  | Android | IOS  |
+| --------------------------- | :--: | :-----: | :--: |
+| .env                        |  ✅   |    👌    |  👌   |
+| Upload file (image, pdf,..) |  ❌   |    ✅    |  🤣   |
+| Authenication facebook      |  ❌   |    ✅    |  👌   |
+| Authenication github        |  ❌   |    ✅    |  👌   |
+| Authenication google        |  ❌   |    ✅    |  👌   |
+| CRUD Firestore              |  ✅   |    ✅    |  ✅   |
+| Build                       |  ✅   |    ✅    |  👌   |
+
+- ✅ Completed and test
+- ❌ Uncompleted and need have many time (Can fix)
+- 👌Can fix EZ if required
+- 🤣Completed but not checked yet
+
+
 
 ## Build
 1. How to setup firebase [link](https://github.com/loinguyen-lifetechvn/Task_Firebase/issues/1)
